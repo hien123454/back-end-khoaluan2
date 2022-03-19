@@ -18,21 +18,21 @@ app.use(morgan('dev'));
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// app.use(
-//   session({
-//     secret: 'keyboard cat',
-//     resave: false,
-//     saveUninitialized: true,
-//     cookie: { secure: true },
-//   })
-// );
 app.use(
-  cookieSession({
-    name: 'session',
-    keys: ['hientran'],
-    maxAge: 24 * 60 * 60 * 100,
+  session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true },
   })
 );
+// app.use(
+//   cookieSession({
+//     name: 'session',
+//     keys: ['hientran'],
+//     maxAge: 24 * 60 * 60 * 100,
+//   })
+// );
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/', IndexRouter);

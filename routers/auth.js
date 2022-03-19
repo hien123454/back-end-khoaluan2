@@ -16,11 +16,10 @@ router.get('/google', passport.authenticate('google', { scope: ['profile'] }));
 
 router.get(
   '/google/callback',
+  passport.authenticate('google', {
+    failureRedirect: '/signin',
+  }),
   AuthController.authGoogle
-  // passport.authenticate('google', {
-  //   successRedirect: CLIENT_URL,
-  //   failureRedirect: '/signin',
-  // })
 );
 router.get(
   '/facebook',
@@ -29,10 +28,10 @@ router.get(
 
 router.get(
   '/facebook/callback',
-  // passport.authenticate('facebook', {
-  //   successRedirect: CLIENT_URL,
-  //   failureRedirect: '/signin',
-  // }),
+  passport.authenticate('facebook', {
+    successRedirect: CLIENT_URL,
+    failureRedirect: '/signin',
+  }),
   AuthController.authFacebook
 );
 
